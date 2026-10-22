@@ -45,3 +45,32 @@ git diff --staged
 ```
 
 La opción correcta es `--staged`, no `--stage`. También puedes usar `git diff --cached`, que es un sinónimo.
+
+## Corregir el último commit: `git commit --amend`
+
+`--amend` es una opción de `git commit` (no un comando independiente). Permite reemplazar el último commit, por ejemplo, para corregir su mensaje:
+
+```bash
+git commit --amend -m "docs: corregir mensaje"
+```
+
+También puedes preparar cambios con `git add` y agregarlos al último commit:
+
+```bash
+git add README.md
+git commit --amend --no-edit
+```
+
+`--no-edit` conserva el mensaje del commit anterior. Al modificar un commit, Git crea un nuevo identificador para él. Evita enmendar commits que ya compartiste con otras personas, porque cambiar el historial puede causarles inconvenientes.
+
+## Deshacer el último commit conservando los cambios: `git reset --soft HEAD^`
+
+Este comando mueve la referencia de `HEAD` al commit anterior, pero conserva los cambios del commit deshecho en el área de preparación. No elimina el trabajo realizado en los archivos.
+
+```bash
+git reset --soft HEAD^
+```
+
+Después puedes revisar lo que quedó preparado con `git diff --staged` y crear otro commit, por ejemplo, con un mensaje corregido. `HEAD^` se refiere al primer padre del commit actual; en un historial lineal equivale a `HEAD~1`.
+
+Este comando modifica el historial local. Si el commit ya fue compartido con otras personas, coordina antes de reescribirlo.
