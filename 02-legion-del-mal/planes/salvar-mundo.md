@@ -7,3 +7,4 @@ estos son los planes para destruir el mundo, pero no se los digas a nadie.
 3. **Proyecto Krypton**: clonar a Superman y crear un ejército de superhéroes bajo nuestro control, para dominar el mundo sin oposición.
 4. **Infiltración de la Liga de la Justicia**: colocar agentes encubiertos dentro de la Liga para sabotear sus operaciones y obtener información crítica.
 5. **Control de medios**: adquirir y manipular los principales medios de comunicación para difundir propaganda y desinformación, debilitando la confianza pública en los héroes y gobiernos.
+6. **Creación de un virus informático global**: desarrollar un malware capaz de paralizar infraestructuras críticas, como redes eléctricas y sistemas de transporte, para sumir al mundo en el caos.
