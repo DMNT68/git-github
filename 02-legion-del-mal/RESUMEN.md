@@ -1,5 +1,11 @@
 # Legión del Mal
 
-> La Legión del Mal es un grupo ficticio de villanos que une fuerzas para enfrentarse a sus rivales y causar problemas.
+> «La inteligencia es el arma más poderosa; el mundo solo necesita aprender quién la empuña.» — Lex Luthor
 
-> **Legión del Mal** es un grupo ficticio de villanos que une fuerzas para enfrentarse a sus rivales y causar problemas.
+
+# ¿Quiénes somos?
+
+La Legión del Mal es una organización criminal liderada por Lex Luthor, un genio criminal y archienemigo de Superman. Su objetivo es dominar el mundo como un imperio.
+
+# Miembros
+ 1. **Lex Luthor**, el genio criminal y archienemigo de Superman, es el líder de la Legión del Mal. Su inteligencia y recursos lo convierten en un formidable adversario.
