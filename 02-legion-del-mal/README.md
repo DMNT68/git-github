@@ -74,3 +74,35 @@ git reset --soft HEAD^
 Después puedes revisar lo que quedó preparado con `git diff --staged` y crear otro commit, por ejemplo, con un mensaje corregido. `HEAD^` se refiere al primer padre del commit actual; en un historial lineal equivale a `HEAD~1`.
 
 Este comando modifica el historial local. Si el commit ya fue compartido con otras personas, coordina antes de reescribirlo.
+
+## Consultar movimientos de `HEAD`: `git reflog`
+
+`git reflog` muestra un registro local de los movimientos recientes de las referencias, como `HEAD`. Puede ayudar a localizar un commit al que ya no se llega desde una rama después de acciones como `git reset`.
+
+```bash
+git reflog
+```
+
+Las entradas muestran un identificador abreviado, la referencia y la acción realizada. Para inspeccionar un estado anterior del reflog, puedes usar una referencia como:
+
+```bash
+git show HEAD@{1}
+```
+
+El reflog es local y sus entradas pueden caducar o eliminarse; no sustituye una copia de seguridad. Antes de restablecer una rama a una entrada del reflog, confirma que elegiste el commit correcto y considera crear una rama de respaldo.
+
+## Mover o renombrar archivos: `git mv`
+
+`git mv` mueve un archivo o cambia su nombre y prepara el cambio para el próximo commit. Su sintaxis es:
+
+```bash
+git mv <origen> <destino>
+```
+
+Por ejemplo, para renombrar un archivo:
+
+```bash
+git mv planes/salvar-mundo.md planes/destruir-mundo.md
+```
+
+Luego revisa el cambio preparado con `git status` o `git diff --staged` y confirma el cambio con `git commit`. También podrías mover el archivo manualmente y ejecutar `git add` para preparar el cambio.
