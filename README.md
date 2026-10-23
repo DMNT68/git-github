@@ -11,5 +11,6 @@ Este repositorio reúne apuntes y ejercicios del curso de Git y GitHub de Fernan
 
 ## Contenido
 
-1. [Fundamentos de Git](./01-evil-plan-01/README.md)
-2. [Un poco más allá de los fundamentos de git](./02-legion-del-mal/)
+1. [Fundamentos de Git](./01-evil-plan-01#fundamentos)
+2. [Un poco más allá de los fundamentos de git](./02-legion-del-mal#comandos-de-git--sección-02)
+3. [Ramas, uniones, conflictos y tags](./03-legion-del-mal#ramas-uniones-conflictos-y-tags---sección-03)
