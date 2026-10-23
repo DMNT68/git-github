@@ -1,0 +1,10 @@
+# Archivos de configuración y variables de entorno
+*.env
+
+# Archivos generados por el sistema
+dist/
+node_modules/
+
+# Archivos de registro
+logs/server*.log
+!logs/server.log
