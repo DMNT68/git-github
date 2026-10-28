@@ -10,12 +10,13 @@ Somos la alianza definitiva de supervillanos. Mientras los héroes se dividen en
 ## Estructura de la organización
 
 ```
-📁 planes/          → Operaciones aprobadas por el Consejo
-📁 miembros/        → Fichas de cada miembro activo
-📁 guaridas/        → Ubicaciones y estado de nuestras bases
-📁 inteligencia/    → Expedientes de los héroes enemigos
-📄 misiones.yaml    → Estado global de todas las misiones
-📄 nuevas-misiones.yaml    → Estado global de las nuevas misiones
+📁 planes/              → Operaciones aprobadas por el Consejo
+📁 miembros/            → Fichas de cada miembro activo
+📁 guaridas/            → Ubicaciones y estado de nuestras bases
+📁 inteligencia/        → Expedientes de los héroes enemigos
+📄 misiones.yaml        → Estado global de todas las misiones
+📄 nuevas-misiones.yaml → Estado global de las nuevas misiones
+📄 RESUMEN.md           → Documentación del estado de la Legión
 ```
 
 ## El Consejo de Villanos
