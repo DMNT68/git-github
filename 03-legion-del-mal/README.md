@@ -45,9 +45,38 @@ En este caso no se crea un commit de merge; solo se hace un avance del puntero.
 
 Esto ayuda a mantener un historial simple y legible cuando todas las ramas tienen una estructura lineal.
 
+## Merge
+
+El comando `git merge` se usa para integrar los cambios de una rama en otra. Cuando una rama de trabajo ya terminó su desarrollo, se puede combinar su historial con la rama principal para llevar esos avances al proyecto principal.
+
+Por ejemplo:
+
+```bash
+git checkout main
+git merge feature/nueva-funcion
+```
+
+Esto toma los commits realizados en `feature/nueva-funcion` y los incorpora en `main`. Si ambas ramas han avanzado por separado, Git puede crear un commit de merge o resolver conflictos si existen cambios en el mismo archivo.
+
+### Cuándo usar merge
+
+- Cuando se quiere conservar el historial de trabajo de una rama.
+- Cuando se termina una funcionalidad y se desea integrarla a la rama principal.
+- Cuando varias ramas deben combinarse sin perder su evolución.
+
+### Importante
+
+Antes de hacer un merge, es recomendable revisar el estado de ambas ramas y asegurarse de que no haya cambios pendientes que puedan causar conflictos.
+
 ## Git branch
 
 Las ramas en Git permiten trabajar en líneas de desarrollo independientes sin afectar el código principal. Cada rama puede tener su propio historial de commits y luego integrarse con la rama principal mediante un merge o rebase.
+
+### Importante: no trabajar sobre la rama `main`
+
+La rama `main` suele representar la versión estable y oficial del proyecto. Por esa razón, no se recomienda hacer cambios directamente sobre ella mientras se está desarrollando una nueva funcionalidad o corrigiendo un problema. Si se trabaja en `main`, se corre el riesgo de mezclar código incompleto, romper la versión estable del repositorio o dificultar la colaboración entre varias personas.
+
+En lugar de eso, se crea una rama de trabajo, por ejemplo `feature/registro` o `fix/login`, y allí se realizan los cambios. Cuando todo está validado, se integra esa rama en `main` mediante un merge o un pull request. Este flujo ayuda a mantener un historial limpio, facilita la revisión del código y evita afectar el trabajo de otros desarrolladores.
 
 ### Comandos básicos
 
