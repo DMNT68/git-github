@@ -7,3 +7,4 @@
 5. red skull
 6. joker
 7. deathstroke
+8. darkseid
