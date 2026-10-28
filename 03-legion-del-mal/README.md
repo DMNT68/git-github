@@ -68,6 +68,50 @@ Esto toma los commits realizados en `feature/nueva-funcion` y los incorpora en `
 
 Antes de hacer un merge, es recomendable revisar el estado de ambas ramas y asegurarse de que no haya cambios pendientes que puedan causar conflictos.
 
+### Merge con conflictos
+
+Un conflicto de merge ocurre cuando Git no puede combinar automáticamente los cambios de dos ramas. Suele suceder cuando ambas modifican la misma parte de un archivo. Git pausa la unión y señala los archivos que necesitan una revisión manual; los cambios no se pierden.
+
+Por ejemplo, después de iniciar el merge:
+
+```bash
+git checkout main
+git merge feature/nueva-funcion
+```
+
+Git puede mostrar un mensaje indicando que hay conflictos. Para identificarlos, consulta el estado:
+
+```bash
+git status
+```
+
+Abre cada archivo marcado como conflictivo y busca las marcas que Git agrega, como `<<<<<<< HEAD`, `=======` y `>>>>>>> feature/nueva-funcion`. El bloque en conflicto tendrá una estructura similar a esta:
+
+```text
+[marcador de inicio: HEAD]
+Contenido de la rama actual (main)
+[separador]
+Contenido de la rama que se está integrando
+[marcador de fin: feature/nueva-funcion]
+```
+
+`HEAD` representa la rama en la que estás, mientras que la sección inferior corresponde a la rama que intentas unir. Edita el archivo para conservar una de las versiones o combinar ambas según corresponda. Después, elimina todas las marcas y guarda el resultado.
+
+Cuando hayas resuelto y revisado los archivos, márcalos como resueltos y termina la unión:
+
+```bash
+git add archivo-resuelto
+git merge --continue
+```
+
+También puedes usar `git add .` para marcar todos los archivos resueltos, pero revisa antes que no incluya cambios ajenos al merge. Si quieres cancelar la operación y volver al estado anterior, ejecuta:
+
+```bash
+git merge --abort
+```
+
+Resolver un conflicto no consiste simplemente en elegir una rama: hay que comprobar que el contenido final conserva los cambios necesarios y funciona como se espera.
+
 ## Git branch
 
 Las ramas en Git permiten trabajar en líneas de desarrollo independientes sin afectar el código principal. Cada rama puede tener su propio historial de commits y luego integrarse con la rama principal mediante un merge o rebase.
