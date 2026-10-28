@@ -268,3 +268,92 @@ git merge feature/nueva-funcion
 ```
 
 `git switch` se enfoca en cambiar de rama y `git branch` en administrarlas. Ambos comandos se complementan para trabajar con ramas de forma clara.
+
+## Tags y `git tag`
+
+Un tag (etiqueta) es una referencia con nombre que apunta a un commit específico. Se usa para identificar puntos importantes del historial, como versiones publicadas (`v1.0.0`) o entregas. A diferencia de una rama, normalmente un tag no se mueve a medida que se crean nuevos commits; por eso resulta útil para volver a localizar una versión concreta.
+
+### Tipos de tags
+
+- **Ligero (lightweight):** una etiqueta sencilla que apunta a un commit, sin información adicional.
+- **Anotado (annotated):** guarda metadatos como el autor, la fecha y un mensaje. Se recomienda para marcar versiones o publicaciones.
+
+```bash
+# Crear un tag ligero en el commit actual
+git tag v1.0.0
+
+# Crear un tag anotado en el commit actual
+git tag -a v1.0.0 -m "Versión 1.0.0"
+```
+
+Si necesitas etiquetar un commit anterior, indica su hash:
+
+```bash
+git tag -a v1.0.0 a1b2c3d -m "Versión 1.0.0"
+```
+
+### Consultar tags
+
+```bash
+# Listar todas las etiquetas
+git tag
+
+# Buscar etiquetas con un patrón
+git tag --list "v1.*"
+
+# Consultar el tag y el commit al que apunta
+git show v1.0.0
+```
+
+### Compartir y eliminar tags
+
+Al hacer `git push` de una rama, Git no publica automáticamente sus tags. Para subir uno específico al remoto:
+
+```bash
+git push origin v1.0.0
+```
+
+Para publicar todos los tags locales que aún no estén en el remoto:
+
+```bash
+git push origin --tags
+```
+
+Eliminar un tag local y eliminarlo del remoto son operaciones separadas:
+
+```bash
+# Eliminar el tag local
+git tag -d v1.0.0
+
+# Eliminar el tag del remoto
+git push origin --delete v1.0.0
+```
+
+Conviene usar nombres consistentes para las versiones, como `v1.0.0`, y evitar modificar o borrar tags ya publicados: otros colaboradores pueden depender de que sigan apuntando al mismo commit.
+
+## Consultar cambios con `git show`
+
+`git show` permite inspeccionar un objeto de Git, normalmente un commit. Sin argumentos muestra el commit más reciente de la rama actual, incluidos sus metadatos y los cambios que introdujo. Es útil para revisar qué se registró antes de integrar o compartir cambios.
+
+```bash
+# Mostrar el commit más reciente y su diff
+git show
+
+# Inspeccionar un commit concreto por su hash
+git show a1b2c3d
+
+# Mostrar el resumen de archivos modificados en un commit
+git show --stat a1b2c3d
+```
+
+También puedes limitar la salida a un archivo o consultar cómo estaba ese archivo en un commit:
+
+```bash
+# Mostrar los cambios de README.md introducidos por el commit
+git show a1b2c3d -- README.md
+
+# Mostrar el contenido de README.md tal como estaba en ese commit
+git show a1b2c3d:README.md
+```
+
+`git show` también acepta referencias como tags y entradas del reflog, por ejemplo `git show v1.0.0` o `git show HEAD@{1}`. Mientras `git log` se usa principalmente para recorrer y resumir el historial de commits, `git show` permite inspeccionar en detalle un commit, tag u otro objeto específico.
