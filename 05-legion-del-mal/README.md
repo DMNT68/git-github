@@ -92,13 +92,25 @@ Puedes usar `git add .` para preparar todos los cambios del directorio, pero rev
 
 ### 4. Publicar la rama en GitHub
 
-La primera vez, usa `-u` para asociar la rama local con la remota:
+`git push` envía los commits de una rama local al repositorio remoto, por ejemplo, a GitHub. No publica cambios que todavía no estén guardados en un commit. Antes de usarlo, puedes revisar el estado del repositorio:
+
+```bash
+git status
+```
+
+La primera vez que publiques una rama, usa `-u` para asociarla con la rama remota:
 
 ```bash
 git push -u origin feature/nombre-de-la-tarea
 ```
 
-Después de crear más commits en esa rama, basta con ejecutar `git push`.
+Reemplaza `feature/nombre-de-la-tarea` por el nombre de tu rama. La opción `-u` configura el seguimiento entre la rama local y la remota; después de crear otros commits en esa rama, basta con ejecutar:
+
+```bash
+git push
+```
+
+Si Git rechaza el envío porque el remoto tiene cambios que no están en tu copia local, actualiza tu rama con `git pull` y resuelve cualquier conflicto antes de volver a intentarlo. Evita `git push --force` si no sabes cómo afecta los cambios remotos, ya que puede sobrescribir commits de otras personas.
 
 ### 5. Abrir un pull request
 
