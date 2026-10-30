@@ -31,12 +31,32 @@ Guarda tus credenciales de forma segura y no las compartas. Puedes activar la au
 4. Si empiezas un proyecto nuevo, puedes marcar **Add a README file**. También puedes elegir un `.gitignore` y una licencia según las necesidades del proyecto.
 5. Selecciona **Create repository**.
 
-GitHub mostrará la dirección del repositorio. Para descargarlo a tu computadora y comenzar a trabajar, copia la URL HTTPS y ejecuta:
+## Clonar un repositorio con `git clone`
+
+`git clone` crea una copia local de un repositorio remoto. Además de descargar los archivos, conserva el historial de commits y configura el remoto `origin`, que normalmente apunta al repositorio desde el que clonaste.
+
+Copia la URL del repositorio en GitHub (por ejemplo, desde el botón **Code**) y ejecuta:
 
 ```bash
 git clone https://github.com/usuario/nombre-del-repositorio.git
 cd nombre-del-repositorio
 ```
+
+El comando crea una carpeta con el nombre del repositorio. `cd` te lleva a esa carpeta para que puedas empezar a trabajar. Si prefieres elegir otro nombre para la carpeta local, indícalo al final:
+
+```bash
+git clone https://github.com/usuario/nombre-del-repositorio.git mi-proyecto
+cd mi-proyecto
+```
+
+Puedes comprobar que estás dentro del repositorio y que `origin` quedó configurado con:
+
+```bash
+git status
+git remote -v
+```
+
+Clonar un repositorio no publica tus cambios en GitHub: para compartir commits necesitas tener permiso y usar `git push`. Si el repositorio es privado, GitHub te pedirá autenticarte. También puedes usar una URL SSH si ya configuraste una clave SSH en tu cuenta.
 
 Si ya tienes un proyecto en una carpeta local y quieres publicarlo en un repositorio nuevo, créalo en GitHub sin agregar un README, `.gitignore` ni licencia para evitar conflictos con los archivos locales. Luego, desde la carpeta del proyecto, publica su rama principal:
 
@@ -158,6 +178,24 @@ git commit
 ```
 
 Si la integración se hizo mediante rebase, continúa con `git rebase --continue` en lugar de `git commit`. Revisa `git status` para ver qué operación está en curso y qué pasos faltan.
+
+### Usar `git pull --rebase`
+
+También puedes integrar los cambios remotos con rebase. Git descarga los commits y vuelve a aplicar tus commits locales encima de la versión actualizada de la rama remota. Esto mantiene un historial lineal y evita crear un commit de merge:
+
+```bash
+git status
+git pull --rebase origin main
+```
+
+Reemplaza `main` por la rama que quieras actualizar y asegúrate de guardar o confirmar tus cambios locales antes de empezar. Si aparecen conflictos, resuélvelos, agrega los archivos corregidos y continúa:
+
+```bash
+git add archivo-con-conflictos
+git rebase --continue
+```
+
+Para cancelar el rebase y volver al estado anterior, ejecuta `git rebase --abort`. Como el rebase cambia los identificadores de los commits locales, evita usarlo en commits que ya compartiste con otras personas.
 
 ## Tags y releases en GitHub
 
