@@ -137,6 +137,59 @@ git pull origin main
 
 Luego puedes iniciar otra tarea desde una rama actualizada.
 
+## Actualizar cambios con `git pull`
+
+`git pull` descarga los cambios de un repositorio remoto y los integra en la rama local en la que estás. En el caso habitual, combina dos operaciones: `git fetch` obtiene los commits remotos y `git merge` los integra. Según la configuración de Git, la integración también puede hacerse mediante rebase.
+
+Para actualizar la rama `main` desde el remoto `origin`, cámbiate primero a ella y ejecuta:
+
+```bash
+git switch main
+git pull origin main
+```
+
+La forma general del comando es `git pull <remoto> <rama>`. Por ejemplo, `git pull origin main` obtiene los cambios de la rama `main` de `origin` y los integra en la rama local actual; por eso conviene comprobar en qué rama estás con `git status` antes de ejecutarlo.
+
+Si Git informa que hay conflictos, abre los archivos señalados, decide cómo combinar los cambios y guarda el resultado. Después, marca los archivos como resueltos y completa la integración:
+
+```bash
+git add archivo-con-conflictos
+git commit
+```
+
+Si la integración se hizo mediante rebase, continúa con `git rebase --continue` en lugar de `git commit`. Revisa `git status` para ver qué operación está en curso y qué pasos faltan.
+
+## Tags y releases en GitHub
+
+Un **tag** (etiqueta) identifica un commit específico, normalmente para marcar una versión publicada, como `v1.0.0`. A diferencia de una rama, que avanza con nuevos commits, un tag suele permanecer asociado a la misma versión. Un **GitHub Release** es una publicación creada en GitHub a partir de un tag; puede incluir notas de versión y archivos descargables.
+
+### Crear y publicar un tag
+
+Cuando los cambios de una versión estén listos y confirmados en la rama adecuada, crea un tag anotado. La anotación guarda información como el mensaje, el autor y la fecha:
+
+```bash
+# Crear un tag para el commit actual
+git tag -a v1.0.0 -m "Versión 1.0.0"
+
+# Revisar los tags locales
+git tag
+
+# Publicar el tag en GitHub
+git push origin v1.0.0
+```
+
+Para marcar otro commit, puedes indicar su identificador en el comando `git tag`. Para publicar todos los tags locales que aún no estén en el remoto, usa `git push origin --tags`.
+
+### Crear un Release
+
+1. Abre el repositorio en GitHub y entra en **Releases**.
+2. Selecciona **Draft a new release**.
+3. Elige el tag que acabas de publicar, o crea uno nuevo desde esa pantalla.
+4. Escribe un título y notas que describan las novedades, correcciones y cambios importantes.
+5. Si corresponde, adjunta archivos de la versión y selecciona **Publish release**.
+
+Usa una convención consistente para nombrar versiones. Por ejemplo, `v1.2.3` suele representar versión mayor, menor y de corrección, respectivamente. Publicar un Release no reemplaza el tag: el Release se construye a partir de él.
+
 ## Recomendaciones
 
 - Mantén cada rama enfocada en una sola tarea.
