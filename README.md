@@ -1,7 +1,7 @@
 ![Workflow](https://img.shields.io/github/actions/workflow/status/DMNT68/legion-del-mal/ci.yml)
 ![Release](https://img.shields.io/github/v/release/DMNT68/legion-del-mal)
 ![Issues](https://img.shields.io/github/issues/DMNT68/legion-del-mal)
-![Último commit](https://img.shields.io/github/last-commit/DMNT68/legion-del-mal)
+![Último commit](https://img.shields.io/github/last-commit/DMNT68/legion-del-mal?cacheSeconds=60)
 ![Licencia](https://img.shields.io/github/license/DMNT68/legion-del-mal)
 
 # Git y GitHub
