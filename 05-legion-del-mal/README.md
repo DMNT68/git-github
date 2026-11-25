@@ -157,6 +157,40 @@ git pull origin main
 
 Luego puedes iniciar otra tarea desde una rama actualizada.
 
+## Obtener cambios con `git fetch`
+
+`git fetch` descarga del remoto los commits y referencias nuevos, pero no los integra en la rama local actual ni modifica tus archivos de trabajo. Así puedes revisar lo que llegó antes de decidir si quieres combinarlo con tu rama.
+
+Para obtener las actualizaciones de `origin`, ejecuta:
+
+```bash
+git fetch origin
+```
+
+Esto actualiza referencias de seguimiento remoto como `origin/main`, que representan el estado conocido de la rama `main` en el remoto. No cambia tu rama local `main`. Puedes revisar qué commits hay en el remoto y todavía no en tu rama con:
+
+```bash
+git log main..origin/main --oneline
+```
+
+Cuando estés listo para integrar esos cambios, cámbiate a la rama local correspondiente y usa `git merge` o `git rebase`. Por ejemplo, para integrar `origin/main` en `main` mediante merge:
+
+```bash
+git switch main
+git merge origin/main
+```
+
+## Comparación entre `git fetch` y `git pull`
+
+Ambos comandos consultan un remoto y descargan cambios. La diferencia es que `git fetch` se detiene después de descargarlos, mientras que `git pull` también intenta integrarlos en la rama local actual.
+
+| Comando | Descarga cambios | Integra cambios en la rama actual | Cuándo usarlo |
+| --- | --- | --- | --- |
+| `git fetch origin` | Sí | No | Cuando quieres inspeccionar primero lo que llegó y decidir cómo integrarlo. |
+| `git pull origin main` | Sí | Sí | Cuando quieres actualizar la rama actual directamente con los cambios de `main` en `origin`. |
+
+En el uso habitual, `git pull` equivale a hacer `git fetch` y luego integrar la referencia remota correspondiente. La integración normalmente se hace con merge, aunque la configuración de Git o la opción `--rebase` pueden hacer que se use rebase. Para un flujo más explícito y controlado, usa `fetch`, revisa los commits y después elige `merge` o `rebase`.
+
 ## Actualizar cambios con `git pull`
 
 `git pull` descarga los cambios de un repositorio remoto y los integra en la rama local en la que estás. En el caso habitual, combina dos operaciones: `git fetch` obtiene los commits remotos y `git merge` los integra. Según la configuración de Git, la integración también puede hacerse mediante rebase.
